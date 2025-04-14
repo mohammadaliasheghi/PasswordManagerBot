@@ -33,7 +33,3 @@ telegram:
   bot:
     token: ENC(lk8BzUecUXkOKwYSfOUdZ9Z3gLgBqWknMf9BoUzme5zY3ipB9c9jq42wQQf35T/Wc8q3EO/kcy0qMPH1hlB9vRJCbBV9MsElcIKfE3kG66Y=)
     username: dev_password_manager_bot
-
-app:
-  base:
-    url: http://localhost:7881

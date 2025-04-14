@@ -87,6 +87,12 @@
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Telegram Bot Library -->
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots</artifactId>
+            <version>6.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
