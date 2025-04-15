@@ -55,7 +55,7 @@ public class PasswordManagerService {
             return "TitleIsRequired";
         if (model.getPassword() == null || model.getPassword().isEmpty())
             return "PasswordIsRequired";
-        if (repository.existsBySecurityInformationIdAndTitleAndId(
+        if (repository.existsBySecurityInformationIdAndTitleAndIdNot(
                 model.getSecurityInformationId(),
                 model.getTitle(),
                 model.getId() != null ? model.getId() : 0L)
@@ -93,6 +93,6 @@ public class PasswordManagerService {
     public void deleteList(Long securityInformationId) {
         List<PasswordManagerModel> list = this.getList(securityInformationId);
         if (list == null || list.isEmpty()) return;
-        list.forEach(entity -> repository.deleteById(entity.getId()));
+        list.forEach(model -> repository.deleteById(model.getId()));
     }
 }

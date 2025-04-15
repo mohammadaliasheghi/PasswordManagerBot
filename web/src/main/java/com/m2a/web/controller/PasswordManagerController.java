@@ -40,5 +40,4 @@ public class PasswordManagerController {
     public ResponseEntity<?> getList(@PathVariable Long securityInformationId) {
         return new ResponseEntity<>(passwordManagerService.getList(securityInformationId), HttpStatus.OK);
     }
-
 }

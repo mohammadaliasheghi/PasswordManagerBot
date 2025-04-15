@@ -11,5 +11,5 @@ public interface PasswordManagerRepository extends JpaRepository<PasswordManager
 
     List<PasswordManagerEntity> findBySecurityInformationId(Long securityInformationId);
 
-    Boolean existsBySecurityInformationIdAndTitleAndId(Long securityInformationId, String title, Long id);
+    Boolean existsBySecurityInformationIdAndTitleAndIdNot(Long securityInformationId, String title, Long id);
 }
