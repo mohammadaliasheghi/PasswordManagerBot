@@ -7,6 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
         , componentModel = "spring"
 )
@@ -20,4 +22,6 @@ public interface PasswordManagerMapper {
     PasswordManagerModel entityToModel(PasswordManagerEntity entity);
 
     PasswordManagerEntity modelToEntity(PasswordManagerModel model);
+
+    List<PasswordManagerModel> entitiesToModels(List<PasswordManagerEntity> entities);
 }

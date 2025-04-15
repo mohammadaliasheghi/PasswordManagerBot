@@ -7,9 +7,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class PasswordManagerModel extends BaseModel {
-    private String username;
-    private String password;
-    private String description;
+    private String title;
+    private String username = "-";
+    private String password = "-";
+    private String description = "-";
     private SecurityInformationModel securityInformation;
     private Long securityInformationId;
 }

@@ -13,7 +13,7 @@ import lombok.Setter;
 @Table(name = "password_manager")
 public class PasswordManagerEntity extends BasePO {
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false, unique = true)
     private String title;
     @Column(name = "username")
     private String username;

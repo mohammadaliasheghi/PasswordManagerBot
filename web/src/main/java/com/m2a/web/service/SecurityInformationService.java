@@ -22,6 +22,7 @@ public class SecurityInformationService implements UserDetailsService {
     private SecurityInformationRepository repository;
     private AuthoritiesService authoritiesService;
     private PasswordEncoder passwordEncoder;
+    private PasswordManagerService passwordManagerService;
 
     @Override
     public SecurityInformationEntity loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -65,6 +66,7 @@ public class SecurityInformationService implements UserDetailsService {
     @Transactional(rollbackFor = Exception.class)
     public String delete(Long id) {
         try {
+            passwordManagerService.deleteList(id);
             authoritiesService.deleteBySecurityInformationId(id);
             repository.deleteById(id);
             return "YourAccountHasBeenDeleted";
@@ -87,5 +89,10 @@ public class SecurityInformationService implements UserDetailsService {
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Autowired
+    public void setPasswordManagerService(PasswordManagerService passwordManagerService) {
+        this.passwordManagerService = passwordManagerService;
     }
 }
