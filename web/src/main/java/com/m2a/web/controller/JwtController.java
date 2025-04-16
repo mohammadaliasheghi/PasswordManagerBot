@@ -47,7 +47,7 @@ public class JwtController {
     }
 
     @PostMapping(value = EndPoint.CREATE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@RequestBody SecurityInformationModel model) {
-        return securityInformationService.create(model);
+    public ResponseEntity<?> create(@RequestBody SecurityInformationModel model) {
+        return new ResponseEntity<>(securityInformationService.create(model), HttpStatus.CREATED);
     }
 }

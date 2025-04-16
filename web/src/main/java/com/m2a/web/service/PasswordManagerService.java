@@ -1,5 +1,6 @@
 package com.m2a.web.service;
 
+import com.m2a.common.ResourceBundle;
 import com.m2a.web.entity.PasswordManagerEntity;
 import com.m2a.web.mapper.PasswordManagerMapper;
 import com.m2a.web.model.PasswordManagerModel;
@@ -26,16 +27,16 @@ public class PasswordManagerService {
                 .modelToEntity(model);
         try {
             repository.save(entity);
-            return "PasswordManagerCreated";
+            return ResourceBundle.getMessageByKey("PasswordManagerCreated");
         } catch (Exception e) {
             e.fillInStackTrace();
-            return "ServerError";
+            return ResourceBundle.getMessageByKey("ServerError");
         }
     }
 
     @Transactional(rollbackFor = Exception.class)
     public String update(PasswordManagerModel model) {
-        if (model.getId() == null) return "IdMustNotBeNull";
+        if (model.getId() == null) return ResourceBundle.getMessageByKey("IdMustNotBeNull");
         String validate = this.validate(model);
         if (!validate.isEmpty()) return validate;
         PasswordManagerEntity entity = PasswordManagerMapper
@@ -43,23 +44,23 @@ public class PasswordManagerService {
                 .modelToEntity(model);
         try {
             repository.save(entity);
-            return "PasswordManagerUpdated";
+            return ResourceBundle.getMessageByKey("PasswordManagerUpdated");
         } catch (Exception e) {
             e.fillInStackTrace();
-            return "ServerError";
+            return ResourceBundle.getMessageByKey("ServerError");
         }
     }
 
     private String validate(PasswordManagerModel model) {
         if (model.getTitle() == null || model.getTitle().isEmpty())
-            return "TitleIsRequired";
+            return ResourceBundle.getMessageByKey("TitleIsRequired");
         if (model.getPassword() == null || model.getPassword().isEmpty())
-            return "PasswordIsRequired";
+            return ResourceBundle.getMessageByKey("PasswordIsRequired");
         if (repository.existsBySecurityInformationIdAndTitleAndIdNot(
                 model.getSecurityInformationId(),
                 model.getTitle(),
                 model.getId() != null ? model.getId() : 0L)
-        ) return "TitleMustBeUnique";
+        ) return ResourceBundle.getMessageByKey("TitleMustBeUnique");
         return "";
     }
 
@@ -67,10 +68,10 @@ public class PasswordManagerService {
     public String delete(Long id) {
         try {
             repository.deleteById(id);
-            return "PasswordManagerDeleted";
+            return ResourceBundle.getMessageByKey("PasswordManagerDeleted");
         } catch (Exception e) {
             e.fillInStackTrace();
-            return "ServerError";
+            return ResourceBundle.getMessageByKey("ServerError");
         }
     }
 

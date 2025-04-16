@@ -1,5 +1,6 @@
 package com.m2a.web.service;
 
+import com.m2a.common.ResourceBundle;
 import com.m2a.web.entity.SecurityInformationEntity;
 import com.m2a.web.enums.RoleEnum;
 import com.m2a.web.mapper.SecurityInformationMapper;
@@ -44,22 +45,22 @@ public class SecurityInformationService implements UserDetailsService {
         try {
             SecurityInformationEntity created = repository.save(entity);
             authoritiesService.create(created.getId(), RoleEnum.ROLE_USER.getId());
-            return "YourAccountHasBeenCreated";
+            return ResourceBundle.getMessageByKey("YourAccountHasBeenCreated");
         } catch (Exception e) {
             e.fillInStackTrace();
-            return "ServerError";
+            return ResourceBundle.getMessageByKey("ServerError");
         }
     }
 
     private String validateCreate(SecurityInformationModel model) {
         if (model.getUsername() == null)
-            return "UsernameIsRequired";
+            return ResourceBundle.getMessageByKey("UsernameIsRequired");
         if (model.getPassword() == null)
-            return "PasswordIsRequired";
+            return ResourceBundle.getMessageByKey("PasswordIsRequired");
         Optional<SecurityInformationEntity> entity =
                 repository.findUsersByUsername(model.getUsername());
         if (entity.isPresent())
-            return "UsernameIsAlreadyTaken";
+            return ResourceBundle.getMessageByKey("UsernameIsAlreadyTaken");
         return "";
     }
 
@@ -69,10 +70,10 @@ public class SecurityInformationService implements UserDetailsService {
             passwordManagerService.deleteList(id);
             authoritiesService.deleteBySecurityInformationId(id);
             repository.deleteById(id);
-            return "YourAccountHasBeenDeleted";
+            return ResourceBundle.getMessageByKey("YourAccountHasBeenDeleted");
         } catch (Exception e) {
             e.fillInStackTrace();
-            return "ServerError";
+            return ResourceBundle.getMessageByKey("ServerError");
         }
     }
 
