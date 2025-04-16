@@ -41,9 +41,9 @@ public class JwtController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
-        response.addHeader(Constant.AUTHORIZATION, jwtConfig.generateToken(model.getUsername()));
-        return new ResponseEntity<>(HttpStatus.OK);
+        String token = jwtConfig.generateToken(model.getUsername());
+        response.addHeader(Constant.AUTHORIZATION, token);
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @PostMapping(value = EndPoint.CREATE, produces = MediaType.APPLICATION_JSON_VALUE)

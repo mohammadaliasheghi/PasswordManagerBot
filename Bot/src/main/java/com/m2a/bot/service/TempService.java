@@ -14,7 +14,7 @@ public class TempService {
 
     @Transactional(rollbackFor = Exception.class)
     public void create(String username, String token, String state) {
-        repository.save(new TempEntity(username, token, state, 0, null));
+        repository.save(new TempEntity(username, token, state, 1, null));
     }
 
     @Transactional(rollbackFor = Exception.class)

@@ -17,7 +17,7 @@ public class TempEntity extends BasePO {
 
     @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(name = "token")
+    @Column(name = "token", length = 2000)
     private String token;
     @Column(name = "state")
     private String state;
