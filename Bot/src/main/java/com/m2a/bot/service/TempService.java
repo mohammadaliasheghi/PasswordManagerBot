@@ -33,4 +33,9 @@ public class TempService {
     public TempEntity findByUsername(String username) {
         return repository.findByUsername(username);
     }
+
+    @Transactional(readOnly = true)
+    public Long getSecurityInformationIdByUsername(String username) {
+        return repository.getSecurityInformationIdByUsername(username);
+    }
 }

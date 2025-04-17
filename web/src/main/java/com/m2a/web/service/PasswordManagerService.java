@@ -37,6 +37,8 @@ public class PasswordManagerService {
     @Transactional(rollbackFor = Exception.class)
     public String update(PasswordManagerModel model) {
         if (model.getId() == null) return ResourceBundle.getMessageByKey("IdMustNotBeNull");
+        if (repository.existsBySecurityInformationIdAndId(model.getSecurityInformationId(), model.getId()))
+            return ResourceBundle.getMessageByKey("IdNotFoundForThisUser");
         String validate = this.validate(model);
         if (!validate.isEmpty()) return validate;
         PasswordManagerEntity entity = PasswordManagerMapper
